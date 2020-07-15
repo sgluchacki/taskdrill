@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as tasksService from '../../utils/tasksService'
 import './App.css';
 
 class App extends Component {

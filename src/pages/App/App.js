@@ -3,6 +3,7 @@ import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import userService from '../../utils/userService';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
+import AllTasksPage from '../AllTasksPage/AllTasksPage';
 import * as tasksService from '../../utils/tasksService';
 import './App.css';
 
@@ -30,6 +31,13 @@ class App extends Component {
     this.setState({
       tasks
     }, () => this.props.history.push('/'));
+  }
+
+  handleDeleteTask = async idOfTaskToDelete => {
+    await tasksService.deleteTask(idOfTaskToDelete);
+    this.setState(state => ({
+      tasks: state.tasks.filter(task => task._id !== idOfTaskToDelete)
+    }), () => this.props.history.push('/'));
   }
 
   render() {
@@ -62,7 +70,12 @@ class App extends Component {
             <Route exact path='/login' render={({ history }) =>
               <LoginPage history={history} handleSignupOrLogin={this.handleSignupOrLogin} />
             } />
-            
+            <Route exact path='/' render={({ history }) =>
+              userService.getUser() ?
+                <AllTasksPage tasksFromParent={this.state.tasks} handleDeleteTask={this.handleDeleteTask} />
+                :
+                <Redirect to='/login' />
+            } />
           </Switch>
         </main>
       </div>

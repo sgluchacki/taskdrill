@@ -9,8 +9,14 @@ import './App.css';
 
 class App extends Component {
   state = {
+    // tasks: this.initializeState(),
     tasks: [],
     user: userService.getUser(),
+  }
+
+  async componentDidMount() {
+    const tasks = await tasksService.getAllTasks();
+    this.setState({ tasks });
   }
 
   handleLogout = () => {

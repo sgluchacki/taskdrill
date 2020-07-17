@@ -12,6 +12,7 @@ async function index(req, res) {
     try{
         const tasks = await Task.find({user: req.user._id}).populate('user');
         res.status(200).json(tasks);
+        console.log('hey, check it out! you got yourself some tasks!')
     }
     catch(err){
         res.status(500).json(err);

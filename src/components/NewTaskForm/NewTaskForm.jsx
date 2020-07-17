@@ -4,7 +4,7 @@ class NewTaskForm extends Component {
     state = {
         formData: {
             name: '',
-            description: ''
+            details: ''
         }
     };
 
@@ -22,6 +22,12 @@ class NewTaskForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.handleAddTask(this.state.formData);
+        this.setState({
+            formData: {
+                name: '',
+                details: ''
+            }
+        });
     }
 
     render() {
@@ -39,7 +45,7 @@ class NewTaskForm extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Description</label>
+                        <label>Details</label>
                         <input
                             className="form-control"
                             name="details"

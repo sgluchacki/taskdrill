@@ -1,8 +1,9 @@
 import React from 'react';
 import './AllTasksPage.css';
 import TaskCard from '../../components/TaskCard/TaskCard';
+import NewTaskForm from '../../components/NewTaskForm/NewTaskForm';
 
-function AllTasksPage({ tasksFromParent, handleDeleteTask }) {
+function AllTasksPage({ tasksFromParent, handleDeleteTask, handleAddTask }) {
     return (
         <>
             <h1>Task List</h1>
@@ -14,6 +15,7 @@ function AllTasksPage({ tasksFromParent, handleDeleteTask }) {
                         handleDeleteTask={handleDeleteTask}
                     />
                 )}
+                <NewTaskForm handleAddTask={handleAddTask}/>
             </div>
         </>
     )

@@ -23,7 +23,8 @@ async function create(req, res) {
     req.body.user = req.user._id;
     try{
         const task = await Task.create(req.body);
-        res.status(201).json(puppy);
+        console.log(task ,'<==========task')
+        res.status(201).json(task);
     }
     catch(err){
         res.status(500).json(err);

@@ -33,6 +33,11 @@ class App extends Component {
     }, () => this.props.history.push('/'));
   }
 
+  handleAddTask = async newTask => {
+    await tasksService.createTask(newTask);
+    this.getAllTasks();
+  }
+
   handleDeleteTask = async idOfTaskToDelete => {
     await tasksService.deleteTask(idOfTaskToDelete);
     this.setState(state => ({
@@ -72,7 +77,11 @@ class App extends Component {
             } />
             <Route exact path='/' render={({ history }) =>
               userService.getUser() ?
-                <AllTasksPage tasksFromParent={this.state.tasks} handleDeleteTask={this.handleDeleteTask} />
+                <AllTasksPage 
+                  tasksFromParent={this.state.tasks} 
+                  handleDeleteTask={this.handleDeleteTask} 
+                  handleAddTask={this.handleAddTask}
+                />
                 :
                 <Redirect to='/login' />
             } />

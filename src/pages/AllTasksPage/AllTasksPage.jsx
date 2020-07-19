@@ -3,7 +3,7 @@ import './AllTasksPage.css';
 import TaskCard from '../../components/TaskCard/TaskCard';
 import NewTaskForm from '../../components/NewTaskForm/NewTaskForm';
 
-function AllTasksPage({ tasksFromParent, handleDeleteTask, handleAddTask }) {
+function AllTasksPage({ tasksFromParent, handleDeleteTask, handleUpdateTask, handleAddTask }) {
     return (
         <>
             <h1>Task List</h1>
@@ -13,6 +13,7 @@ function AllTasksPage({ tasksFromParent, handleDeleteTask, handleAddTask }) {
                         key={task._id}
                         taskFromParent={task}
                         handleDeleteTask={handleDeleteTask}
+                        handleUpdateTask={handleUpdateTask}
                     />
                 )}
                 <NewTaskForm handleAddTask={handleAddTask}/>

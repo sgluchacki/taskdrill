@@ -4,6 +4,7 @@ import userService from '../../utils/userService';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import AllTasksPage from '../AllTasksPage/AllTasksPage';
+import EditTaskPage from '../EditTaskPage/EditTaskPage';
 import * as tasksService from '../../utils/tasksService';
 import './App.css';
 
@@ -41,6 +42,11 @@ class App extends Component {
 
   handleAddTask = async newTask => {
     await tasksService.createTask(newTask);
+    this.getAllTasks();
+  }
+
+  handleUpdateTask = async updatedTaskData => {
+    await tasksService.updateTask(updatedTaskData);
     this.getAllTasks();
   }
 
@@ -86,11 +92,21 @@ class App extends Component {
                 <AllTasksPage 
                   tasksFromParent={this.state.tasks} 
                   handleDeleteTask={this.handleDeleteTask} 
+                  handleUpdateTask={this.handleUpdateTask} 
                   handleAddTask={this.handleAddTask}
                 />
                 :
                 <Redirect to='/login' />
             } />
+            <Route exact path='/edit' render={({ history, location }) =>
+              userService.getUser() ?
+                <EditTaskPage 
+                  handleUpdateTask={this.handleUpdateTask}
+                  location={location}
+                />
+                :
+                <Redirect to='/login' />
+            }/>
           </Switch>
         </main>
       </div>

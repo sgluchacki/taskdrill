@@ -32,7 +32,7 @@ async function indexSubCards(req, res) {
     try{
         const tasks = await Task.find({
             user: req.user._id,
-            parentTask: req.params.id
+            parentTask: req.params.id || null
         }).populate('user');
         res.status(200).json(tasks);
         console.log('hey, check it out! you got yourself some subTasks!')

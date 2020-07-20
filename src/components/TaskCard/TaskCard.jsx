@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 // Keep an eye out here, might need to convert to class-based component
 // or hook it
 
-function TaskCard({ taskFromParent, handleDeleteTask }) {
-    console.log(taskFromParent , '<===========taskFromParent')
+function TaskCard({ taskFromParent, handleDeleteTask, getAllChildTasks, componentDidMount }) {
+    // console.log(taskFromParent , '<===========taskFromParent')
+    // onClick={() => getAllChildTasks(taskFromParent._id)}
     return (
         <>
             <div className='panel panel-default'>
@@ -27,7 +28,7 @@ function TaskCard({ taskFromParent, handleDeleteTask }) {
                     DELETE
                     </button>
                     {/* Go deeper, DRILL */}
-                    <Link to={{ pathname:`/${taskFromParent._id}`, state: {parentTask: taskFromParent} }}>DRILL</Link>
+                    <Link to={{ pathname:`/${taskFromParent._id}`, state: {parentTask: taskFromParent} } } onClick={() => getAllChildTasks(taskFromParent._id)}>DRILL</Link>
                 </div>
             </div>
         </>

@@ -48,40 +48,44 @@ import * as tasksService from '../../utils/tasksService';
 
 class AllChildTasksPage extends Component {
     state = {
-        children: [],
+        // tasks: [],
         parentTask: this.props.location.state.parentTask
     }
 
-    handleUpdateChildren = (children) => {
-        console.log(children, '<==============children')
-        this.setState({ children });
-    };
+    // pass up to app
+    // handleUpdateChildren = (tasks) => {
+    //     console.log(tasks, '<==============tasks')
+    //     this.setState({ tasks });
+    // };
 
-    async componentDidMount() {
-        const children = await tasksService.getAllChildTasks(this.state.parentTask._id);
-        this.handleUpdateChildren(children)
-    }
+    // async componentDidMount() {
+    //     const tasks = await tasksService.getAllChildTasks(this.state.parentTask._id);
+    //     this.handleUpdateChildren(tasks)
+    // }
+
+
 
     render() {
-        console.log( this.state.parentTask, '<==================this.state.parentTask')
         return(
             <>
-                <h1>Inside "{this.state.parentTask.name}"</h1>
+                <h1>Inside "{this.props.location.state.parentTask.name}"</h1>
                 <div className='AllTasksPage-grid'>
-                {this.state.children.length ? this.state.children.map(task => 
+                {this.props.tasksFromParent.length ? this.props.tasksFromParent.map(task => 
                     <TaskCard
                         key={task._id}
                         taskFromParent={task}
                         handleDeleteTask={this.props.handleDeleteTask}
                         handleUpdateTask={this.props.handleUpdateTask}
+                        getAllChildTasks={this.props.getAllChildTasks}
+                        componentDidMount={this.props.componentDidMount}
                     />
                 )
                 :
                     <h3>No Child Tasks Yet</h3>
                 }
                 <NewChildTaskForm 
-                    handleAddTask={this.props.handleAddTask}
-                    parentTaskID={this.state.parentTask._id}
+                    handleAddChildTask={this.props.handleAddChildTask}
+                    parentTaskID={this.props.location.state.parentTask._id}
                 />
                 </div>
             </>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import { Route, Switch, Redirect, NavLink, Link } from 'react-router-dom';
 import userService from '../../utils/userService';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -12,8 +12,11 @@ import './App.css';
 class App extends Component {
   state = {
     tasks: [],
+    drilledPath: [],
     user: userService.getUser(),
   }
+
+  // drilledPath: [id1, id2, id3, ...]
 
   async componentDidMount() {
     const tasks = await tasksService.getAllTasks();
@@ -45,7 +48,7 @@ class App extends Component {
     this.getAllTasks();
   }
   
-  handleAddTask = async newTask => {
+  handleAddChildTask = async newTask => {
     await tasksService.createTask(newTask);
     this.getAllChildTasks();
   }
@@ -63,17 +66,22 @@ class App extends Component {
   }
 
   getAllChildTasks = async parentTaskID => {
+    console.log('you hit getAllChildTasks')
     const tasks = await tasksService.getAllChildTasks(parentTaskID);
     this.setState({
-      tasks
-    }, () => this.props.history.push(`/${parentTaskID}`));
+      tasks,
+      drilledPath: [...this.state.drilledPath, parentTaskID]
+    });
+    // // this.setState({
+    //   tasks
+    // }, () => this.props.history.push(`/${parentTaskID}`));
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          TaskDrill
+          <Link to='/' onClick={this.getAllTasks}>TaskDrill</Link>
           <nav>
             {userService.getUser() ?
               <>
@@ -106,6 +114,7 @@ class App extends Component {
                   handleDeleteTask={this.handleDeleteTask} 
                   handleUpdateTask={this.handleUpdateTask} 
                   handleAddTask={this.handleAddTask}
+                  getAllChildTasks={this.getAllChildTasks}
                 />
                 :
                 <Redirect to='/login' />
@@ -127,7 +136,7 @@ class App extends Component {
                   tasksFromParent={this.state.tasks} 
                   handleDeleteTask={this.handleDeleteTask} 
                   handleUpdateTask={this.handleUpdateTask} 
-                  handleAddTask={this.handleAddTask}
+                  handleAddChildTask={this.handleAddChildTask}
                   getAllChildTasks={this.getAllChildTasks}
                   location={location}
                 />

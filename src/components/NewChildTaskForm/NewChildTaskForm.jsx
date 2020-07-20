@@ -23,7 +23,7 @@ class NewChildTaskForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleAddTask(this.state.formData);
+        this.props.handleAddChildTask(this.state.formData);
         this.setState({
             formData: {
                 name: '',

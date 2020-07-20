@@ -63,9 +63,10 @@ class AllChildTasksPage extends Component {
     }
 
     render() {
+        console.log( this.state.parentTask, '<==================this.state.parentTask')
         return(
             <>
-                <h1>You've Gone Deeper</h1>
+                <h1>Inside "{this.state.parentTask.name}"</h1>
                 <div className='AllTasksPage-grid'>
                 {this.state.children.length ? this.state.children.map(task => 
                     <TaskCard
@@ -80,7 +81,7 @@ class AllChildTasksPage extends Component {
                 }
                 <NewChildTaskForm 
                     handleAddTask={this.props.handleAddTask}
-                    // parentTaskID={parentTaskID}
+                    parentTaskID={this.state.parentTask._id}
                 />
                 </div>
             </>

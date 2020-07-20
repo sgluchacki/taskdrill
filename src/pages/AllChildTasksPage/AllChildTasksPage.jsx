@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../AllTasksPage/AllTasksPage.css';
+import { Link } from 'react-router-dom';
 import TaskCard from '../../components/TaskCard/TaskCard';
 import NewChildTaskForm from '../../components/NewChildTaskForm/NewChildTaskForm';
-import * as tasksService from '../../utils/tasksService';
+// import * as tasksService from '../../utils/tasksService';
 
 
 // function AllChildTasksPage({ tasksFromParent, handleDeleteTask, handleUpdateTask, handleAddTask, getAllChildTasks, location }) {
@@ -47,10 +48,10 @@ import * as tasksService from '../../utils/tasksService';
 // }
 
 class AllChildTasksPage extends Component {
-    state = {
-        // tasks: [],
-        parentTask: this.props.location.state.parentTask
-    }
+    // state = {
+    //     // tasks: [],
+    //     parentTask: this.props.location.state.parentTask
+    // }
 
     // pass up to app
     // handleUpdateChildren = (tasks) => {
@@ -63,12 +64,37 @@ class AllChildTasksPage extends Component {
     //     this.handleUpdateChildren(tasks)
     // }
 
+    // {{ pathname:`/${taskFromParent._id}`, state: {parentTask: taskFromParent} } }
+
+    handleOnNavigateBack = () => {
+        this.setState()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.location !== prevProps.location) {
+        //   this.onRouteChanged();
+            console.log(this.props.location, '<=================this.props.location');
+            console.log(prevProps.location, '<=================prevProps.location');
+            this.props.getAllChildTasks(this.props.location.state.parentTask._id)
+        }
+    }
+
+    // onRouteChanged() {
+        
+    // }
+
 
 
     render() {
         return(
             <>
                 <h1>Inside "{this.props.location.state.parentTask.name}"</h1>
+                {/* <p>{this.props.drilledPath.map( (task, index) =>
+                    <Link to={{ 
+                        pathname:`/${task._id}`,
+                        state: {parentTask: task}
+                    }}>{"> "}{task.name}</Link>
+                )}</p> */}
                 <div className='AllTasksPage-grid'>
                 {this.props.tasksFromParent.length ? this.props.tasksFromParent.map(task => 
                     <TaskCard

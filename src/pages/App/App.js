@@ -50,7 +50,7 @@ class App extends Component {
   
   handleAddChildTask = async newTask => {
     await tasksService.createTask(newTask);
-    this.getAllChildTasks();
+    this.getAllChildTasks(newTask.parentTask);
   }
 
   handleUpdateTask = async updatedTaskData => {
@@ -69,8 +69,8 @@ class App extends Component {
     console.log('you hit getAllChildTasks')
     const tasks = await tasksService.getAllChildTasks(parentTaskID);
     this.setState({
-      tasks,
-      drilledPath: [...this.state.drilledPath, parentTaskID]
+      tasks
+      // drilledPath: [...this.state.drilledPath, parentTask]
     });
     // // this.setState({
     //   tasks
@@ -110,7 +110,7 @@ class App extends Component {
             <Route exact path='/' render={({ history }) =>
               userService.getUser() ?
                 <AllTasksPage 
-                  tasksFromParent={this.state.tasks} 
+                  tasksFromParent={this.state.tasks}
                   handleDeleteTask={this.handleDeleteTask} 
                   handleUpdateTask={this.handleUpdateTask} 
                   handleAddTask={this.handleAddTask}
@@ -128,12 +128,13 @@ class App extends Component {
               :
               <Redirect to='/login' />
             }/>
-            <Route exact path='/:id' render={({ history, location }) =>
+            <Route exact path={'/:id'} render={({ history, location }) =>
               userService.getUser() ?
                 <AllChildTasksPage 
                   // HERE WE NEED TO LIMIT THE TASKS TO ONLY HAVE THOSE OF THE CHILD
                   // SOMETHING SIMILAR TO CLICKEDONPUPPY
                   tasksFromParent={this.state.tasks} 
+                  drilledPath={this.state.drilledPath}
                   handleDeleteTask={this.handleDeleteTask} 
                   handleUpdateTask={this.handleUpdateTask} 
                   handleAddChildTask={this.handleAddChildTask}

@@ -10,7 +10,7 @@ export function getAllTasks() {
     }).then(allTasks => allTasks.json());
 }
 
-export function getAllChildTasks(parentTaskID) {
+export function getAllChildTasks(parentTaskID = null) {
     return fetch(`${BASE_URL}/${parentTaskID}`, {
         headers: {
             'Authorization': `Bearer ${tokenService.getTokenFromLocalStorage()}`

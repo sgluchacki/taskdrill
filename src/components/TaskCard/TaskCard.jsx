@@ -23,8 +23,11 @@ function TaskCard({ taskFromParent, handleDeleteTask }) {
                         className='btn btn-xs btn-danger margin-left-10'
                         onClick={() => handleDeleteTask(taskFromParent._id)}
                     >
+                    {/* maybe have this link to a delete confirmation or a popup? */}
                     DELETE
                     </button>
+                    {/* Go deeper, DRILL */}
+                    <Link to={{ pathname:`/${taskFromParent._id}`, state: {parentTask: taskFromParent} }}>DRILL</Link>
                 </div>
             </div>
         </>

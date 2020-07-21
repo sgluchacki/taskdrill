@@ -18,7 +18,7 @@ function TaskCard({ taskFromParent, handleDeleteTask, getAllChildTasks, componen
                     <h3 className='panel-title'>{taskFromParent.name.toUpperCase()}</h3>
                 </div>
                 <div className='panel-body'>
-                    <p>{taskFromParent.details}</p>
+                    <p className="details">{taskFromParent.details}</p>
                 </div>
                 <div className='task-nav'>
                     <Link className='btn' to={{ pathname: '/edit', state: { selectedTask: taskFromParent } }}>EDIT</Link>

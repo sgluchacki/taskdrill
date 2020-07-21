@@ -88,7 +88,7 @@ class AllChildTasksPage extends Component {
     render() {
         return(
             <>
-                <h1>Inside "{this.props.location.state.parentTask.name}"</h1>
+                <h1 className="page-header">INSIDE "{this.props.location.state.parentTask.name.toUpperCase()}"</h1>
                 {/* <p>{this.props.drilledPath.map( (task, index) =>
                     <Link to={{ 
                         pathname:`/${task._id}`,
@@ -111,7 +111,9 @@ class AllChildTasksPage extends Component {
                         />
                     )
                     :
-                        <h3>No Child Tasks Yet</h3>
+                        <div className='panel panel-default'>
+                            <h3 className='panel-title'>NOTHING HERE YET!</h3>
+                        </div>
                     }
                 </div>
             </>

@@ -6,8 +6,9 @@ import NewTaskForm from '../../components/NewTaskForm/NewTaskForm';
 function AllTasksPage({ tasksFromParent, handleDeleteTask, handleUpdateTask, handleAddTask, getAllChildTasks }) {
     return (
         <>
-            <h1>Task List</h1>
+            <h1>All Tasks</h1>
             <div className='AllTasksPage-grid'>
+                <NewTaskForm handleAddTask={handleAddTask}/>
                 {tasksFromParent.map(task => 
                     <TaskCard
                         key={task._id}
@@ -17,7 +18,6 @@ function AllTasksPage({ tasksFromParent, handleDeleteTask, handleUpdateTask, han
                         getAllChildTasks={getAllChildTasks}
                     />
                 )}
-                <NewTaskForm handleAddTask={handleAddTask}/>
             </div>
         </>
     )

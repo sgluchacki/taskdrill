@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './TaskCard.css';
+
 
 // This is where we drill deeper, so inside here include AllTasksPage or an analogue
 // Grab all subcards, need backend call and method in app
@@ -13,23 +15,23 @@ function TaskCard({ taskFromParent, handleDeleteTask, getAllChildTasks, componen
         <>
             <div className='panel panel-default'>
                 <div className="panel-heading">
-                    <h3 className='panel-title'>{taskFromParent.name}</h3>
+                    <h3 className='panel-title'>{taskFromParent.name.toUpperCase()}</h3>
                 </div>
                 <div className='panel-body'>
                     <p>{taskFromParent.details}</p>
                 </div>
-                <div className='panel-footer'>
-                    <Link className='btn btn-xs btn-warning' to={{ pathname: '/edit', state: { selectedTask: taskFromParent } }}>EDIT</Link>
+                <div className='task-nav'>
+                    <Link className='btn' to={{ pathname: '/edit', state: { selectedTask: taskFromParent } }}>EDIT</Link>
+                    {/* Go deeper, DRILL */}
+                    <Link className='btn' to={{ pathname:`/${taskFromParent._id}`, state: {parentTask: taskFromParent} } } onClick={() => getAllChildTasks(taskFromParent._id)}>DRILL</Link>
+                </div>
                     <button
-                        className='btn btn-xs btn-danger margin-left-10'
+                        className='btn-danger'
                         onClick={() => handleDeleteTask(taskFromParent._id)}
                     >
                     {/* maybe have this link to a delete confirmation or a popup? */}
-                    DELETE
+                    X
                     </button>
-                    {/* Go deeper, DRILL */}
-                    <Link to={{ pathname:`/${taskFromParent._id}`, state: {parentTask: taskFromParent} } } onClick={() => getAllChildTasks(taskFromParent._id)}>DRILL</Link>
-                </div>
             </div>
         </>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "../NewTaskForm/NewTaskForm.css";
 
 class NewChildTaskForm extends Component {
     state = {
@@ -35,7 +36,8 @@ class NewChildTaskForm extends Component {
     render() {
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
+                <form className="task-form" onSubmit={this.handleSubmit}>
+                    <h3 className="panel-title">CREATE A NEW TASK</h3>
                     <div className="form-group">
                         <label>Name (required)</label>
                         <input
@@ -57,7 +59,7 @@ class NewChildTaskForm extends Component {
                     </div>
                     <button
                         type="submit"
-                        className="btn"
+                        className="btn-create"
                     >
                         Create
                     </button>

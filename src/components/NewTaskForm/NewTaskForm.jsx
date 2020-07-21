@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./NewTaskForm.css";
 
 class NewTaskForm extends Component {
     state = {
@@ -33,9 +34,11 @@ class NewTaskForm extends Component {
     render() {
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
+                <form className="task-form" onSubmit={this.handleSubmit}>
+                    <h3 className="panel-title">CREATE A NEW TASK</h3>
                     <div className="form-group">
                         <label>Name (required)</label>
+                        <br />
                         <input
                             className="form-control"
                             name="name"
@@ -46,6 +49,7 @@ class NewTaskForm extends Component {
                     </div>
                     <div className="form-group">
                         <label>Details</label>
+                        <br />
                         <input
                             className="form-control"
                             name="details"
@@ -53,12 +57,14 @@ class NewTaskForm extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="btn"
-                    >
-                        Create
-                    </button>
+                    <div className="form-group">
+                        <button
+                            type="submit"
+                            className="btn-create"
+                        >
+                            CREATE
+                        </button>
+                    </div>
                 </form>
             </>
         );

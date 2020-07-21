@@ -96,23 +96,23 @@ class AllChildTasksPage extends Component {
                     }}>{"> "}{task.name}</Link>
                 )}</p> */}
                 <div className='AllTasksPage-grid'>
-                {this.props.tasksFromParent.length ? this.props.tasksFromParent.map(task => 
-                    <TaskCard
-                        key={task._id}
-                        taskFromParent={task}
-                        handleDeleteTask={this.props.handleDeleteTask}
-                        handleUpdateTask={this.props.handleUpdateTask}
-                        getAllChildTasks={this.props.getAllChildTasks}
-                        componentDidMount={this.props.componentDidMount}
+                    <NewChildTaskForm 
+                        handleAddChildTask={this.props.handleAddChildTask}
+                        parentTaskID={this.props.location.state.parentTask._id}
                     />
-                )
-                :
-                    <h3>No Child Tasks Yet</h3>
-                }
-                <NewChildTaskForm 
-                    handleAddChildTask={this.props.handleAddChildTask}
-                    parentTaskID={this.props.location.state.parentTask._id}
-                />
+                    {this.props.tasksFromParent.length ? this.props.tasksFromParent.map(task => 
+                        <TaskCard
+                            key={task._id}
+                            taskFromParent={task}
+                            handleDeleteTask={this.props.handleDeleteTask}
+                            handleUpdateTask={this.props.handleUpdateTask}
+                            getAllChildTasks={this.props.getAllChildTasks}
+                            componentDidMount={this.props.componentDidMount}
+                        />
+                    )
+                    :
+                        <h3>No Child Tasks Yet</h3>
+                    }
                 </div>
             </>
         )

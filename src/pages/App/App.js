@@ -16,8 +16,6 @@ class App extends Component {
     user: userService.getUser(),
   }
 
-  // drilledPath: [id1, id2, id3, ...]
-
   async componentDidMount() {
     const tasks = await tasksService.getAllTasks();
     this.setState({ tasks });
@@ -70,11 +68,7 @@ class App extends Component {
     const tasks = await tasksService.getAllChildTasks(parentTaskID);
     this.setState({
       tasks
-      // drilledPath: [...this.state.drilledPath, parentTask]
     });
-    // // this.setState({
-    //   tasks
-    // }, () => this.props.history.push(`/${parentTaskID}`));
   }
 
   render() {
@@ -131,8 +125,6 @@ class App extends Component {
             <Route exact path={'/:id'} render={({ history, location }) =>
               userService.getUser() ?
                 <AllChildTasksPage 
-                  // HERE WE NEED TO LIMIT THE TASKS TO ONLY HAVE THOSE OF THE CHILD
-                  // SOMETHING SIMILAR TO CLICKEDONPUPPY
                   tasksFromParent={this.state.tasks} 
                   drilledPath={this.state.drilledPath}
                   handleDeleteTask={this.handleDeleteTask} 

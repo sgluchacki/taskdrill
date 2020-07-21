@@ -4,12 +4,11 @@ module.exports = {
     index,
     indexSubCards,
     create,
-    // createSubCard,
     update,
     delete: deleteOne,
 };
 
-// index
+
 async function index(req, res) {
     try{
         const tasks = await Task.find({
@@ -24,10 +23,7 @@ async function index(req, res) {
     }
 }
 
-// indexSubCards
-// limit to parent task id in params
-// complete backend routing
-// frontend will require new allsubtasks component
+
 async function indexSubCards(req, res) {
     try{
         const tasks = await Task.find({
@@ -42,7 +38,7 @@ async function indexSubCards(req, res) {
     }
 }
 
-// create
+
 async function create(req, res) {
     req.body.user = req.user._id;
     try{
@@ -55,20 +51,7 @@ async function create(req, res) {
     }
 }
 
-// createSubCard may not need
-// async function createSubCard(req, res) {
-//     req.body.user = req.user._id;
-//     try{
-//         const task = await Task.create(req.body);
-//         console.log(task ,'<==========task')
-//         res.status(201).json(task);
-//     }
-//     catch(err){
-//         res.status(500).json(err);
-//     }
-// }
 
-// update
 async function update(req, res) {
     try{
         const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true});
@@ -79,7 +62,7 @@ async function update(req, res) {
     }
 }
 
-// delete
+
 async function deleteOne(req, res) {
     try{
         const deletedTask = await Task.findByIdAndRemove(req.params.id);

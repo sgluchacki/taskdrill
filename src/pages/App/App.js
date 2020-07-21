@@ -81,7 +81,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Link to='/' onClick={this.getAllTasks}><img className="logo" src={process.env.PUBLIC_URL + '/taskdrill-logo.png'}/></Link>
+          <Link to='/' onClick={this.getAllTasks}><img className="logo" alt="TaskDrill logo" src={process.env.PUBLIC_URL + '/taskdrill-logo.png'}/></Link>
           <nav>
             {userService.getUser() ?
               <>

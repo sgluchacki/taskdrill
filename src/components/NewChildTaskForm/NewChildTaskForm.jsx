@@ -28,12 +28,15 @@ class NewChildTaskForm extends Component {
         this.setState({
             formData: {
                 name: '',
-                details: ''
+                details: '',
+                parentTask: this.props.parentTaskID
             }
         });
     }
 
     render() {
+        console.log(this.state.formData.parentTask, "parentTask from NewChildTaskForm formData")
+        console.log(this.props.parentTaskID, "parentTaskID from NewChildTaskForm props")
         return (
             <>
                 <form className="task-form" onSubmit={this.handleSubmit}>

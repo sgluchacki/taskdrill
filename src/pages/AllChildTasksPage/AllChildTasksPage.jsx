@@ -6,9 +6,9 @@ import NewChildTaskForm from '../../components/NewChildTaskForm/NewChildTaskForm
 
 class AllChildTasksPage extends Component {
 
-    handleOnNavigateBack = () => {
-        this.setState()
-    }
+    // handleOnNavigateBack = () => {
+    //     this.setState()
+    // }
 
     
     componentDidUpdate(prevProps) {
@@ -22,6 +22,7 @@ class AllChildTasksPage extends Component {
 
 
     render() {
+        console.log(this.props.location.state.parentTask._id, "<==========this.props.location.state.parentTask._id from AllChildTasksPage")
         return(
             <>
                 <h1 className="page-header">INSIDE "{this.props.location.state.parentTask.name.toUpperCase()}"</h1>

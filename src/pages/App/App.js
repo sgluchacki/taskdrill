@@ -12,7 +12,6 @@ import './App.css';
 class App extends Component {
   state = {
     tasks: [],
-    drilledPath: [],
     user: userService.getUser(),
   }
 
@@ -126,7 +125,6 @@ class App extends Component {
               userService.getUser() ?
                 <AllChildTasksPage 
                   tasksFromParent={this.state.tasks} 
-                  drilledPath={this.state.drilledPath}
                   handleDeleteTask={this.handleDeleteTask} 
                   handleUpdateTask={this.handleUpdateTask} 
                   handleAddChildTask={this.handleAddChildTask}

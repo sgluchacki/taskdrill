@@ -10,6 +10,20 @@ class NewChildTaskForm extends Component {
         }
     };
 
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            console.log(this.props, '<=================this.props');
+            console.log(prevProps, '<=================prevProps');
+            this.setState({
+                formData: {
+                    name: '',
+                    details: '',
+                    parentTask: this.props.parentTaskID
+                }
+            });
+        }
+    }
+
     handleChange = e => {
         console.log(this.props)
         const formDataAsUserTypes = {

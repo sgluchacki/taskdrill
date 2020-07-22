@@ -13,7 +13,6 @@ class AllChildTasksPage extends Component {
     
     componentDidUpdate(prevProps) {
         if (this.props.location !== prevProps.location) {
-        //   this.onRouteChanged();
             console.log(this.props.location, '<=================this.props.location');
             console.log(prevProps.location, '<=================prevProps.location');
             this.props.getAllChildTasks(this.props.location.state.parentTask._id)

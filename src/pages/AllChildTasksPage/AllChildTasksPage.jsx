@@ -13,15 +13,12 @@ class AllChildTasksPage extends Component {
     
     componentDidUpdate(prevProps) {
         if (this.props.location !== prevProps.location) {
-            console.log(this.props.location, '<=================this.props.location');
-            console.log(prevProps.location, '<=================prevProps.location');
             this.props.getAllChildTasks(this.props.location.state.parentTask._id)
         }
     }
 
 
     render() {
-        console.log(this.props.location.state.parentTask._id, "<==========this.props.location.state.parentTask._id from AllChildTasksPage")
         return(
             <>
                 <h1 className="page-header">INSIDE "{this.props.location.state.parentTask.name.toUpperCase()}"</h1>

@@ -4,7 +4,6 @@ import './TaskCard.css';
 
 
 function TaskCard({ taskFromParent, handleDeleteTask, getAllChildTasks }) {
-    console.log(taskFromParent, `<===============${taskFromParent.name}FromParent`)
     return (
         <>
             <div className='panel panel-default'>

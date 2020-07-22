@@ -12,8 +12,6 @@ class NewChildTaskForm extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
-            console.log(this.props, '<=================this.props');
-            console.log(prevProps, '<=================prevProps');
             this.setState({
                 formData: {
                     name: '',
@@ -25,7 +23,6 @@ class NewChildTaskForm extends Component {
     }
 
     handleChange = e => {
-        console.log(this.props)
         const formDataAsUserTypes = {
             ...this.state.formData,
             [e.target.name]: e.target.value
@@ -49,8 +46,6 @@ class NewChildTaskForm extends Component {
     }
 
     render() {
-        console.log(this.state.formData.parentTask, "parentTask from NewChildTaskForm formData")
-        console.log(this.props.parentTaskID, "parentTaskID from NewChildTaskForm props")
         return (
             <>
                 <form className="task-form" onSubmit={this.handleSubmit}>

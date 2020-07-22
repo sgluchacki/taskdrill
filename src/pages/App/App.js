@@ -63,7 +63,6 @@ class App extends Component {
   }
 
   getAllChildTasks = async parentTaskID => {
-    console.log('you hit getAllChildTasks')
     const tasks = await tasksService.getAllChildTasks(parentTaskID);
     this.setState({
       tasks

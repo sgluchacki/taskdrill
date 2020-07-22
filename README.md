@@ -6,7 +6,12 @@ Some tasks require drilling pretty deep in order to get them done correctly. Ima
 
 ## How Does It Work?
 
-PUT STUFF HERE AFTER THE DESIGN PHASE
+First, [navigate here to the deployed app](https://taskdrill.herokuapp.com). The create an account to login. Now it's up to you: create some tasks on the root page and start drilling deeper into the app to enjoy your structured task list.
+
+![home-page](public/home-page.png)
+
+
+![first-layer](public/first-layer.png)
 
 ## Technologies:
 
